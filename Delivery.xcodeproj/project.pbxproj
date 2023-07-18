@@ -13,6 +13,10 @@
 		AE4439452A65DEB90043E494 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4439432A65DEB90043E494 /* Main.storyboard */; };
 		AE4439472A65DEC30043E494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE4439462A65DEC30043E494 /* Assets.xcassets */; };
 		AE44394A2A65DEC30043E494 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4439482A65DEC30043E494 /* LaunchScreen.storyboard */; };
+		AE4439522A65E8660043E494 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4439512A65E8660043E494 /* CustomCollectionViewCell.swift */; };
+		AEE5D83A2A66A96400F60B45 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE5D8392A66A96400F60B45 /* SignUpViewController.swift */; };
+		AEE5D83C2A66A97B00F60B45 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE5D83B2A66A97B00F60B45 /* LoginViewController.swift */; };
+		AEE5D83E2A66A9CA00F60B45 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE5D83D2A66A9CA00F60B45 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		AE4439462A65DEC30043E494 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE4439492A65DEC30043E494 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE44394B2A65DEC30043E494 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE4439512A65E8660043E494 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		AEE5D8392A66A96400F60B45 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		AEE5D83B2A66A97B00F60B45 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AEE5D83D2A66A9CA00F60B45 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,10 @@
 				AE4439462A65DEC30043E494 /* Assets.xcassets */,
 				AE4439482A65DEC30043E494 /* LaunchScreen.storyboard */,
 				AE44394B2A65DEC30043E494 /* Info.plist */,
+				AE4439512A65E8660043E494 /* CustomCollectionViewCell.swift */,
+				AEE5D8392A66A96400F60B45 /* SignUpViewController.swift */,
+				AEE5D83B2A66A97B00F60B45 /* LoginViewController.swift */,
+				AEE5D83D2A66A9CA00F60B45 /* HomeViewController.swift */,
 			);
 			path = Delivery;
 			sourceTree = "<group>";
@@ -138,9 +150,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE5D83C2A66A97B00F60B45 /* LoginViewController.swift in Sources */,
 				AE4439422A65DEB90043E494 /* ViewController.swift in Sources */,
 				AE44393E2A65DEB90043E494 /* AppDelegate.swift in Sources */,
 				AE4439402A65DEB90043E494 /* SceneDelegate.swift in Sources */,
+				AE4439522A65E8660043E494 /* CustomCollectionViewCell.swift in Sources */,
+				AEE5D83E2A66A9CA00F60B45 /* HomeViewController.swift in Sources */,
+				AEE5D83A2A66A96400F60B45 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
