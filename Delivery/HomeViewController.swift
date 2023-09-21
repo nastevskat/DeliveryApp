@@ -22,6 +22,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     
     var foodTypes: [FoodType] = []
     var offers: [Offer] = []
+    var bestRated: [BestRated] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         updateScrollView()
         self.offersForYouCollectionView.dataSource = self
         self.offersForYouCollectionView.delegate = self
+        self.bestRatedCollectionView.dataSource = self
+        self.bestRatedCollectionView.delegate = self
       
     }
   func updateGreeting() {
@@ -69,6 +72,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         let db = Firestore.firestore()
         let collectionRef = db.collection("food_types")
         let offerRef = db.collection("offers")
+        let restaurantRef = db.collection("restaurants")
         
         collectionRef.getDocuments { (snapshot, error) in
             if let error = error {
@@ -109,6 +113,27 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
                     
                 }
         }
+        restaurantRef.getDocuments { (snapshot, error) in
+                if let error = error {
+                    print("Error fetching data: \(error.localizedDescription)")
+                    return
+                }
+                if let documents = snapshot?.documents {
+                self.bestRated = documents.compactMap { document in
+                    let data = document.data()
+                    guard let imageURLString = data["image_url"] as? String,
+                          let imageURL = URL(string: imageURLString),
+                          let name = data["name"] as? String,
+                          let location = data["location"] as? String else {
+                        return nil
+                    }
+                    return BestRated(imageURL: imageURL, name: name, location: location)
+                }
+                     print("Best Rated array:", self.bestRated)
+                    self.bestRatedCollectionView.reloadData()
+                    
+                }
+        }
 
  }
 }
@@ -118,6 +143,8 @@ extension HomeViewController: UICollectionViewDataSource {
             return foodTypes.count
         } else if collectionView == offersForYouCollectionView {
             return offers.count
+        } else if collectionView == bestRatedCollectionView {
+            return bestRated.count
         }
         return 0
     }
@@ -127,10 +154,8 @@ extension HomeViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodTypeCell", for: indexPath) as! FoodTypeCollectionViewCell
             let foodType = foodTypes[indexPath.item]
 
-            // Set the label
             cell.foodTypeLabel.text = foodType.label
 
-            // Load and display the image from the URL
             DispatchQueue.global().async {
                 if let imageData = try? Data(contentsOf: foodType.imageURL),
                    let image = UIImage(data: imageData) {
@@ -142,16 +167,33 @@ extension HomeViewController: UICollectionViewDataSource {
 
             return cell
         } else if collectionView == offersForYouCollectionView {
-            // Handle the offersForYouCollectionView similarly
+        
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OfferCell", for: indexPath) as! OffersForYouCollectionViewCell
             let offer = offers[indexPath.item]
 
-            // Set the image for the offer
             DispatchQueue.global().async {
                 if let imageData = try? Data(contentsOf: offer.imageURL),
                    let image = UIImage(data: imageData) {
                     DispatchQueue.main.async {
                         cell.offerImageView.image = image
+                    }
+                }
+            }
+
+            return cell
+        } else if collectionView == bestRatedCollectionView {
+        
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestRatedCell", for: indexPath) as! BestRatedCollectionViewCell
+            let best = bestRated[indexPath.item]
+
+            cell.name.text = best.name
+            cell.location.text = best.location
+            
+            DispatchQueue.global().async {
+                if let imageData = try? Data(contentsOf: best.imageURL),
+                   let image = UIImage(data: imageData) {
+                    DispatchQueue.main.async {
+                        cell.bestRatedImageView.image = image
                     }
                 }
             }

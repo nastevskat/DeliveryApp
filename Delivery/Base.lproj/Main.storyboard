@@ -203,7 +203,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yeC-T9-EoP">
                                         <rect key="frame" x="0.0" y="334.66666666666669" width="334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSJ-RB-X1Y">
                                         <rect key="frame" x="0.0" y="390.66666666666669" width="334" height="50"/>
@@ -286,7 +286,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QCL-tL-EBJ">
                                         <rect key="frame" x="0.0" y="504.66666666666663" width="334" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyP-kF-WK8">
                                         <rect key="frame" x="0.0" y="578.66666666666663" width="334" height="50"/>
@@ -500,7 +500,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="yfF-hk-XeU" customClass="BestRatedCollectionViewCell" customModule="Delivery" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BestRatedCell" id="yfF-hk-XeU" customClass="BestRatedCollectionViewCell" customModule="Delivery" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="178" height="65"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YZS-Ki-VO1">
@@ -627,6 +627,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZl-hf-lLb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2371.0144927536235" y="116.57608695652175"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ceY-y2-Sjk">
+            <objects>
+                <viewController id="un2-e3-twN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pY1-S3-fPD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AQz-LX-Tfi">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="AQz-LX-Tfi" firstAttribute="top" secondItem="cqE-LM-MwJ" secondAttribute="top" id="PQW-o8-IHH"/>
+                            <constraint firstItem="AQz-LX-Tfi" firstAttribute="trailing" secondItem="cqE-LM-MwJ" secondAttribute="trailing" id="o8f-tV-613"/>
+                            <constraint firstItem="AQz-LX-Tfi" firstAttribute="bottom" secondItem="cqE-LM-MwJ" secondAttribute="bottom" id="rf5-gw-YNg"/>
+                            <constraint firstItem="AQz-LX-Tfi" firstAttribute="leading" secondItem="cqE-LM-MwJ" secondAttribute="leading" id="weV-Hv-rjt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cqE-LM-MwJ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wFA-gp-vOy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3118.840579710145" y="-118.20652173913044"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LZ8-bc-YCE">

@@ -11,7 +11,6 @@ import UIKit
 class BestRatedCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var bestRatedImageView: UIImageView!
-    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var locationImg: UIImageView!
