@@ -20,3 +20,8 @@ struct BestRated {
     let name: String
     let location: String
 }
+struct NearMe {
+    let imageURL: URL
+    let name: String
+    let location: String
+}

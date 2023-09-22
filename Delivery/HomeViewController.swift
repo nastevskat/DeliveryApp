@@ -19,10 +19,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var foodTypeCollectionView: UICollectionView!
     @IBOutlet weak var offersForYouCollectionView: UICollectionView!
     @IBOutlet weak var bestRatedCollectionView: UICollectionView!
-    
+    @IBOutlet weak var nearMeCollectionView: UICollectionView!
+
     var foodTypes: [FoodType] = []
     var offers: [Offer] = []
     var bestRated: [BestRated] = []
+    var nearMe: [NearMe] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.offersForYouCollectionView.delegate = self
         self.bestRatedCollectionView.dataSource = self
         self.bestRatedCollectionView.delegate = self
+        self.nearMeCollectionView.dataSource = self
+        self.nearMeCollectionView.delegate = self
       
     }
   func updateGreeting() {
@@ -134,6 +138,27 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
                     
                 }
         }
+        restaurantRef.getDocuments { (snapshot, error) in
+                if let error = error {
+                    print("Error fetching data: \(error.localizedDescription)")
+                    return
+                }
+                if let documents = snapshot?.documents {
+                self.nearMe = documents.compactMap { document in
+                    let data = document.data()
+                    guard let imageURLString = data["image_url"] as? String,
+                          let imageURL = URL(string: imageURLString),
+                          let name = data["name"] as? String,
+                          let location = data["location"] as? String else {
+                        return nil
+                    }
+                    return NearMe(imageURL: imageURL, name: name, location: location)
+                }
+                     print("Near me array:", self.nearMe)
+                    self.nearMeCollectionView.reloadData()
+                    
+                }
+        }
 
  }
 }
@@ -145,6 +170,8 @@ extension HomeViewController: UICollectionViewDataSource {
             return offers.count
         } else if collectionView == bestRatedCollectionView {
             return bestRated.count
+        } else if collectionView == nearMeCollectionView {
+            return nearMe.count
         }
         return 0
     }
@@ -200,7 +227,25 @@ extension HomeViewController: UICollectionViewDataSource {
 
             return cell
         }
+        else if collectionView == nearMeCollectionView {
+        
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NearMeCell", for: indexPath) as! NearMeCollectionViewCell
+            let near = nearMe[indexPath.item]
 
+            cell.name.text = near.name
+            cell.location.text = near.location
+            
+            DispatchQueue.global().async {
+                if let imageData = try? Data(contentsOf: near.imageURL),
+                   let image = UIImage(data: imageData) {
+                    DispatchQueue.main.async {
+                        cell.imgView.image = image
+                    }
+                }
+            }
+
+            return cell
+        }
         return UICollectionViewCell()
     }
 }
